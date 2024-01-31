@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
 
 export default function useCopyToClipboard(resetInterval = null) {
@@ -22,7 +22,7 @@ export default function useCopyToClipboard(resetInterval = null) {
       timeOut = setTimeout(() => setIsCopied(false), resetInterval);
     }
     return () => {
-      clearTimeout();
+      clearTimeout(timeOut);
     };
   }, [isCopied, resetInterval]);
 

@@ -1,10 +1,9 @@
 import React from "react";
 
 import useCopyToClipboard from "./useCopyToClipboard";
-import "./App.css";
 
 function App({ code }) {
-  const [isCopied, handleCopy] = useCopyToClipboard();
+  const [isCopied, handleCopy] = useCopyToClipboard(3000);
 
   return (
     <button className="App" onClick={() => handleCopy(code)}>
