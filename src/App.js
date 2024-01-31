@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import copy from "copy-to-clipboard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+export default function useCopyToClipboard(resetInterval = null) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  function handleCopy(text) {
+    if (typeof text === "string" || typeof text === "number") {
+      copy(text.toString());
+      setIsCopied(true);
+    } else {
+      setIsCopied(false);
+      console.log(
+        `Cannot copy typof ${typeof text} to clipboard, must be a string or number.`
+      );
+    }
+  }
+
+  return [isCopied, handleCopy];
 }
-
-export default App;
